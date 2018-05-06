@@ -1,3 +1,5 @@
+// 内存问题
+
 var log = console.log.bind(console)
 
 var maxDif = function (arr) {
@@ -12,13 +14,18 @@ var maxDif = function (arr) {
 }
 
 var range = function (arr) {
-    var result = [];
+    arr = arr.sort()
+    log('arr',arr)
+    var str = "数组为: "
+    // var result = [];
     var minNum = arr[0];
     var maxNum = arr[arr.length - 1];
     for (var i = minNum; i <= maxNum; i++) {
-        result.push(i);
+        // result.push(i);
+        str += i
     }
-    return result;
+    log(str)
+    return str;
 }
 
 var findRadius = function (houses, heaters) {
@@ -229,4 +236,16 @@ var findRadius = function (houses, heaters) {
 
 // findRadius([3, 4, 5, 6], [1, 2, 4, 7, 8])
 // findRadius([1, 2, 3, 4], [2, 5, 6, 7])
-findRadius([282475249, 622650073, 984943658, 144108930, 470211272, 101027544, 457850878, 458777923], [823564440, 115438165, 784484492, 74243042, 114807987, 137522503, 441282327, 16531729, 823378840, 143542612])
+// findRadius([282475249, 622650073, 984943658, 144108930, 470211272, 101027544, 457850878, 458777923], [823564440, 115438165, 784484492, 74243042, 114807987, 137522503, 441282327, 16531729, 823378840, 143542612])
+
+
+range([
+    282475249,
+    622650073,
+    984943658,
+    144108930,
+    470211272,
+    101027544,
+    457850878,
+    458777923]
+)
