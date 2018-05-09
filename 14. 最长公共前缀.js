@@ -22,26 +22,21 @@ var longestCommonPrefix = function (strs) {
 
     // log(smallestStr)
 
+    var resultStr = ""
+
     var flag = true
-    for (var i = 0; i < strs.length; i++) {
-        for (var j = 1; j <= smallestStr.length; j++) {
-            // 从第一位开始比较
-            if (smallestStr.slice(0, j) !== strs[i].slice(0, j)) {
+    for (var i = 0; i < smallestStr.length; i++) {
+        for (var j = 0; j < strs.length; j++) {
+            if (strs[j][i] !== smallestStr[i]) {
                 flag = false
-                log("结果为", smallestStr.slice(0, j - 1))
-                return smallestStr.slice(0, j - 1)
-            } else {
-                var num = j - 1
             }
+        }
+        if(flag) {
+            resultStr += smallestStr[i]
         }
     }
 
-    if (flag) {
-        // log("结果为", smallestStr.slice(0, num + 1))
-        var result = smallestStr.slice(0, num + 1)
-        log("ok", result)
-        return result
-    }
+    return resultStr
 };
 
-longestCommonPrefix(["flower", "fl", "flight"])
+longestCommonPrefix(["abca","aba","aaab"])
