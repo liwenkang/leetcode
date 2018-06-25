@@ -1,17 +1,4 @@
-/**
- * Definition for isBadVersion()
- *
- * @param {integer} version number
- * @return {boolean} whether the version is bad
- * isBadVersion = function(version) {
- *     ...
- * };
- */
-
-/**
- * @param {function} isBadVersion()
- * @return {function}
- */
+/* 经典的二分查找 */
 var solution = function(isBadVersion) {
     /**
      * @param {integer} n Total versions
