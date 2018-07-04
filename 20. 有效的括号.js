@@ -3,47 +3,29 @@ var log = console.log.bind(console)
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function (s) {
-// "()[]{}"
-// "{[]()}()"
-    var str = s
-    if (str.length % 2 !== 0) {
-        return false
-    }
-
-    while (str.length > 0) {
-        var flag = false
-        for (var i = 0; i < str.length; i++) {
-            if (str[i] === "(" && str[i + 1] === ")") {
-                flag = true
-                str = str.slice(0, i) + str.slice(i + 2)
-            }
-            if (str[i] === "{" && str[i + 1] === "}") {
-                flag = true
-                str = str.slice(0, i) + str.slice(i + 2)
-            }
-            if (str[i] === "[" && str[i + 1] === "]") {
-                flag = true
-                str = str.slice(0, i) + str.slice(i + 2)
-            }
-        }
-        if(flag) {
-            continue
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var dict = {
+    "]":"[",
+    ")":"(",
+    "}":"{"
+}
+var isValid = function(s) {
+    var arr = []
+    for(var i = 0; i < s.length; i++) {
+        if(s[i] === "[" || s[i] === "(" || s[i] === "{") {
+            arr.push(s[i])
         }else {
-            break
+            var temp = arr.pop()
+            if(temp !== dict[s[i]]) {
+                return false
+            }
         }
     }
-
-    if (str.length === 0) {
-        log("result:", str)
-        return true
-    } else {
-        log("false", str)
-        return false
-    }
+    log(arr.length === 0)
+    return arr.length === 0
 };
-
-isValid("()[]{}")
-isValid("(]")
-isValid("([)]")
-isValid("(([]){})")
+isValid("((){})")
+isValid("()")
