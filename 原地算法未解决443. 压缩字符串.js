@@ -1,6 +1,6 @@
 const log = console.log.bind(console)
 
-// 神特么不生效
+// 需要原地修改数组???
 
 var compress = function (chars) {
     var noReapet = Array.from(new Set(chars))
@@ -19,6 +19,7 @@ var compress = function (chars) {
     for (var i = 0; i < noReapet.length; i++) {
         arr.push(noReapet[i], result[i])
     }
+    log(arr.join("").split(""))
     return arr.join("").split("")
 }
 

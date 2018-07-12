@@ -25,3 +25,18 @@ var firstUniqChar = function (s) {
 }
 
 firstUniqChar("lleetcode")
+
+var slice = function (ary, start, end) {
+    var result = []
+    for (var i = start; i < end; i++) {
+        result.push(ary[i])
+    }
+    return result
+}
+
+var fill = function (ary, val) {
+    for (var i = 0; i < ary.length; i++) {
+        ary[i] = val
+    }
+    return ary
+}

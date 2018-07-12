@@ -2,6 +2,10 @@ const log = console.log.bind(console)
 
 // 效率不高
 
+var sortArr = function (arr) {
+
+}
+
 var minMoves = function (nums) {
     // 让某个数字不变, 其他都 +1 最终元素内所有值都相等
     // 策略,谁大,我就加不加谁

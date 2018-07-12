@@ -62,6 +62,7 @@ var sumArr = function (arr) {
     }
     return sum
 }
+
 var maxSubArray = function (nums) {
     var maxNum = getMaxNum(nums)
     if (maxNum <= 0) {

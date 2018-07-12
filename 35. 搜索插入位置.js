@@ -1,5 +1,6 @@
 var log = console.log.bind(console)
 /**
+ * 推荐使用二分法
  * @param {number[]} nums
  * @param {number} target
  * @return {number}

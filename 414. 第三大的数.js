@@ -1,10 +1,8 @@
-const log = console.log.bind(console)
-
 /**
  * @param {number[]} nums
  * @return {number}
  */
-var thirdMax = function (nums) {
+var thirdMax = function(nums) {
     var arr = Array.from(new Set(nums))
     arr = arr.sort(function (a, b) {
         return b - a
@@ -15,6 +13,4 @@ var thirdMax = function (nums) {
     } else {
         return arr[0]
     }
-}
-
-thirdMax([1,2])
+};
