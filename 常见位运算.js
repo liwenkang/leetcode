@@ -11,6 +11,15 @@ const judgeOddEven = function (num) {
     }
 }
 
+const exchangeNum = function (a, b) {
+    log("交换前: a=" + a + " b=" + b)
+    b = a - b
+    a = b - a
+    b = b - a
+    log("交换后: a=" + a + " b=" + b)
+}
+
+
 // 不利用第三个变量,进行两个数字交换
 const exchangeNum = function (a, b) {
     log("交换前: a=" + a + " b=" + b)
