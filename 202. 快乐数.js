@@ -40,7 +40,6 @@ var isHappy = function (n) {
         nextN += arr[i]
     }
     if (nextN === 1) {
-        log("true 不循环就可以")
         return true
     }
     while (nextN > 1) {
@@ -50,15 +49,11 @@ var isHappy = function (n) {
             arr[i] = Math.pow(parseInt(arr[i]), 2)
             nextN += arr[i]
         }
-        log("delete0 before nextN", nextN)
         nextN = deleteZero(nextN)
-        log("delete0 nextN", nextN)
         if (nextN === 1) {
-            log("true 经过循环可以了", nextN)
             return true
         }
         if (nextN === n || nextN === 2) {
-            log("false")
             return false
         }
     }

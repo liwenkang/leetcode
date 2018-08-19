@@ -5,26 +5,19 @@ const log = console.log.bind(console)
  * @return {boolean}
  */
 var judgeSquareSum = function (c) {
-    if (Math.sqrt(c) % 1 === 0) {
-        log(true)
+    if(c === 0) {
         return true
     }
-
-    var startNum = Math.floor(Math.sqrt(c))
-
-    for (var i = startNum; i >= 0; i--) {
-        for (var j = startNum; j >= 0; j--) {
-            if (i * i + j * j === c) {
-                log(true)
-                return true
-            }
-            if (i * i + j * j < c) {
-                break
-            }
+    for (var i = 0; i < Math.sqrt(c); i++) {
+        var num = i
+        var rest = c - num * num
+        if (rest === 0 || Math.sqrt(rest) % 1 === 0) {
+            return true
         }
     }
-    log(false)
     return false
-}
+};
 
-judgeSquareSum(2147483646)
+// judgeSquareSum(5)
+// judgeSquareSum(3)
+log(judgeSquareSum(0))

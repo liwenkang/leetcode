@@ -1,17 +1,24 @@
 const log = console.log.bind(console)
 
 /**
+ * Input: 28
+ Output: True
+ Explanation: 28 = 1 + 2 + 4 + 7 + 14
  * @param {number} num
  * @return {boolean}
  */
+
 var checkPerfectNumber = function (num) {
-    var count = 0
-    for (var i = 1; i < Math.sqrt(num); i++) {
+    if(num === 0) {
+        return false
+    }
+    var divisorsArr = []
+    for (var i = 1; i < num; i++) {
         if (num % i === 0) {
-            count += (i + num / i)
+            divisorsArr.push(i)
         }
     }
-    return count === 2 * num
+    return divisorsArr.reduce((init, value) => init + value, 0) === num
 }
 
-checkPerfectNumber(28)
+log(checkPerfectNumber(28))

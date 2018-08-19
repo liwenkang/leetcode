@@ -15,7 +15,6 @@ var arrangeCoins = function (n) {
             break
         }
     }
-    log(count)
     return count
 }
 

@@ -6,11 +6,9 @@ var log = console.log.bind(console)
  */
 var isPowerOfFour = function (num) {
     if (num === 0) {
-        log("false")
         return false
     }
     if(num === 1) {
-        log("true")
         return true
     }
     if (num % 4 === 0) {
@@ -18,14 +16,11 @@ var isPowerOfFour = function (num) {
             num = num / 4
         }
         if (num === 1) {
-            log("true")
             return true
         } else {
-            log("false")
             return false
         }
     } else {
-        log("false")
         return false
     }
 }

@@ -1,13 +1,25 @@
 const log = console.log.bind(console)
 
+
 var binaryTreePaths = function (root) {
-    if (!root) {
-        return []
+    var result = []
+
+    function f(root, str = "") {
+        if (root) {
+            if (root.left === null && root.right === null) {
+                str += root.val
+            }else {
+                str += root.val + "->"
+            }
+            if (root.left === null && root.right === null) {
+                result.push(str)
+            }
+            f(root.left, str)
+            f(root.right, str)
+        }
     }
-    var left = binaryTreePaths(root.left)
-    var right = binaryTreePaths(root.right)
-
-
+    f(root)
+    return result
 }
 
 binaryTreePaths({

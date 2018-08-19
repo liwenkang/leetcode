@@ -1,5 +1,5 @@
 const log = console.log.bind(console)
-// 效率不够
+
 var judgeSort = function (arr) {
     // 判断数组是否是连续递增的
     for (var i = 1; i < arr.length; i++) {

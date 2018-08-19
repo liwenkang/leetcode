@@ -15,8 +15,6 @@ var getRepeatTime = function (num, arr) {
     return time
 }
 
-getRepeatTime(5, [1, 2, 3, 5, 6, 5, 5, 66, 6])
-
 var majorityElement = function (nums) {
     var time = Math.floor(nums.length / 2)
     for (var i = 0; i < nums.length; i++) {

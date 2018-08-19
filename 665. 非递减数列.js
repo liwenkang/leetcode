@@ -4,53 +4,38 @@ const log = console.log.bind(console)
  * @return {boolean}
  */
 
-var sortNum = function (arr) {
-    // 递增
-    var temp = arr.slice(0)
-    temp.sort(function (a, b) {
-        return a - b
-    })
-    return temp
+var sortArray = function (array) {
+    var tmp = array.slice()
+    tmp.sort((a, b) => a - b)
+    return tmp
 }
 
 var checkPossibility = function (nums) {
+    // 移一个数字就递增
+    var arr1 = nums.slice()
+    var arr2 = nums.slice()
 
-    var arr = sortNum(nums)
-
-    if (nums.toString() === arr.toSting()) {
-        return true
-    }
-
-    var arr1 = arr.slice(0)
-    var arr2 = arr.slice(0)
-
-    var nums1 = nums.slice(0)
-    var nums2 = nums.slice(0)
-
-    for (var i = 0; i < arr1.length; i++) {
-        if (arr1[i] !== nums1[i]) {
-            arr1.splice(arr1.indexOf(nums1[i], i), 1)
-            nums1.splice(i, 1)
-            if (nums1.toString() === arr1.toString()) {
-                log(true)
-                return true
-            }
+    for (var i = 0; i < arr1.length - 1; i++) {
+        if (arr1[i] > arr1[i + 1]) {
+            arr1.splice(i, 1)
             break
         }
     }
+    var str1 = arr1.join("")
+    var sortStr1 = sortArray(arr1).join("")
 
-    for (var i = 0; i < arr2.length; i++) {
-        if (arr2[i] !== nums2[i]) {
-            nums2.splice(nums2.indexOf(arr2[i], i), 1)
-            arr2.splice(i, 1)
-            if (nums2.toString() === arr2.toString()) {
-                log(true)
-                return true
-            }
+    for (var i = 0; i < arr2.length - 1; i++) {
+        if (arr2[i] > arr2[i + 1]) {
+            arr2.splice(i + 1, 1)
             break
         }
     }
-    return false
+    var str2 = arr2.join("")
+    var sortStr2 = sortArray(arr2).join("")
+
+    return str1 === sortStr1 || str2 === sortStr2
 }
 
-checkPossibility([4, 2, 3])
+log(checkPossibility([2, 3, 3, 2, 4]))
+log(checkPossibility([4, 2, 3]))
+log(checkPossibility([4, 2, 1]))

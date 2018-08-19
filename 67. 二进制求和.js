@@ -106,7 +106,6 @@ var addBinary = function (a, b) {
                         break
                     }
                 } else {
-                    log(diffArr)
                     break
                 }
             }

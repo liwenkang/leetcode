@@ -17,7 +17,6 @@ var canPlaceFlowers = function (flowerbed, n) {
             flowerbed[i] = 1
         }
     }
-    log(maxN)
     return maxN >= n
 }
 

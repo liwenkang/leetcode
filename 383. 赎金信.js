@@ -22,13 +22,11 @@ var canConstruct = function (ransomNote, magazine) {
                     magazineArr = magazineArr.slice(0, j).concat(magazineArr.slice(j + 1))
                     i = -1
                     if (ransomNoteArr.length === 0) {
-                        log("true")
                         return true
                     }
                     break
                 }
             } else {
-                log("false")
                 return false
             }
         }

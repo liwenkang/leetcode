@@ -21,21 +21,16 @@ var calPoints = function (ops) {
             }
             ops[i] = count - temp
         } else if (ops[i] === "D") {
-            log("D开始前count",count)
             var flag = 0
             for (var j = 1; ; j++) {
                 if (ops[i - j]) {
-                    log("ops[i - j]",ops[i - j])
                     count += (ops[i - j] * 2)
                     ops[i] = ops[i - j] * 2
                     // 前一轮有效 回合得分的两倍。
                     break
                 }
             }
-            log("D结束后count",count)
         } else if (ops[i] === "C") {
-            log("C开始前count",count)
-            log("C开始前ops",ops)
             var flag = 0
             for (var j = 1; ; j++) {
                 if (ops[i - j]) {
@@ -48,14 +43,12 @@ var calPoints = function (ops) {
                     break
                 }
             }
-            log("C结束后count",count)
-            log("C结束后ops",ops)
         } else {
             ops[i] = parseInt(ops[i])
             count += ops[i]
         }
     }
-    log("count", count)
+    return count
 }
 
 calPoints(["1", "2", "3", "4", "C", "C", "D"])

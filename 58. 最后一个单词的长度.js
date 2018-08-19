@@ -15,7 +15,7 @@ var lengthOfLastWord = function (s) {
         if (arr[i] === "") {
             arr = arr.splice(0, i)
         } else {
-            return arr[arr.length - 1]
+            return arr[arr.length - 1].length
         }
     }
     return 0

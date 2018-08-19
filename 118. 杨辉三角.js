@@ -21,11 +21,10 @@ var generate = function (numRows) {
      *  如果 n 为 基数,那么 arr[Math.ceil(n/2) - 1] 就是最大值
      *  如果 n 为 偶数,那么 arr[(n/2) - 1] 就是最大值
      */
-    log("先搞成空数组", arr)
 
     var arr = [[1]];
     if(numRows === 0) {
-        return arr
+        return []
     }
     for (var i = 1; i <= numRows; i++) {
         arr[i] = []
@@ -35,6 +34,6 @@ var generate = function (numRows) {
             arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j]
         }
     }
-    return arr
-}
+    return arr.slice(0, arr.length -1)
+};
 generate(6)

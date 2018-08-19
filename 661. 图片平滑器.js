@@ -3,84 +3,37 @@ const log = console.log.bind(console)
 /**
  * @param {number[][]} M
  * @return {number[][]}
- * 神特么判题系统
  */
-var imageSmoother = function (M) {
-    // i 是竖着的 j 是横着的
-    var arr = []
-    for (var i = 0; i < M.length; i++) {
-        arr.push([])
-    }
-
-    for (var i = 0; i < M.length; i++) {
-        for (var j = 0; j < M[0].length; j++) {
-            var couldPlus = 0
-            var count = 0
-            if (M[i - 1] !== undefined && M[i - 1][j - 1] !== undefined) {
-                couldPlus++
-                count += M[i - 1][j - 1]
+var getAverage = function (M, i, j) {
+    var sum = 0
+    var count = 0
+    for (var m = i - 1; m <= i + 1; m++) {
+        for (var n = j - 1; n <= j + 1; n++) {
+            if (M[m] !== undefined && M[m][n] !== undefined) {
+                sum += M[m][n]
+                count++
             }
-            if (M[i] !== undefined && M[i][j - 1] !== undefined) {
-                couldPlus++
-                count += M[i][j - 1]
-            }
-            if (M[i + 1] !== undefined && M[i + 1][j - 1] !== undefined) {
-                couldPlus++
-                count += M[i + 1][j - 1]
-                if (i === 4 && j === 1) {
-                    log("count", count)
-                    log("couldPlus", couldPlus + 1)
-                }
-            }
-
-            if (M[i - 1] !== undefined && M[i - 1][j] !== undefined) {
-                couldPlus++
-                count += M[i - 1][j]
-                if (i === 4 && j === 1) {
-                    log("count", count)
-                    log("couldPlus", couldPlus + 1)
-                }
-            }
-            if (M[i + 1] !== undefined && M[i + 1][j] !== undefined) {
-                couldPlus++
-                count += M[i + 1][j]
-                if (i === 4 && j === 1) {
-                    log("count", count)
-                    log("couldPlus", couldPlus + 1)
-                }
-            }
-
-            if (M[i - 1] !== undefined && M[i - 1][j + 1] !== undefined) {
-                couldPlus++
-                count += M[i - 1][j + 1]
-                if (i === 4 && j === 1) {
-                    log("count", count)
-                    log("couldPlus", couldPlus + 1)
-                }
-            }
-            if (M[i] !== undefined && M[i][j + 1] !== undefined) {
-                couldPlus++
-                count += M[i][j + 1]
-                if (i === 4 && j === 1) {
-                    log("count", count)
-                    log("couldPlus", couldPlus + 1)
-                }
-            }
-            if (M[i + 1] !== undefined && M[i + 1][j + 1] !== undefined) {
-                couldPlus++
-                count += M[i + 1][j + 1]
-                if (i === 4 && j === 1) {
-                    log("count", count)
-                    log("couldPlus", couldPlus + 1)
-                }
-            }
-            count += M[i][j]
-
-            var item = Math.floor(count / (couldPlus + 1))
-            arr[i][j] = item
         }
     }
-    log(arr)
+    return Math.floor(sum / count)
+}
+
+var imageSmoother = function (M) {
+    var newM = []
+    for (var i = 0; i < M.length; i++) {
+        newM[i] = []
+    }
+    for (var i = 0; i < M.length; i++) {
+        for (var j = 0; j < M[i].length; j++) {
+            newM[i][j] = getAverage(M, i, j)
+        }
+    }
+    return newM
 }
 
 imageSmoother([[2, 3, 4], [5, 6, 7], [8, 9, 10], [11, 12, 13], [14, 15, 16]])
+
+// Output:
+//     [[4,4,5],[6,6,6],[8,9,9],[11,11,12],[12,12,12]]
+// Expected:
+//     [[4,4,5],[5,6,6],[8,9,9],[11,12,12],[13,13,14]]
