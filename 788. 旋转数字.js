@@ -28,7 +28,7 @@ var rotatedDigits = function (N) {
             }
         }
     }
-    log("count", count)
+    return count
 }
 
 rotatedDigits(23)

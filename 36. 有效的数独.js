@@ -1,4 +1,4 @@
-const log = console.log.bind(console)
+nst log = console.log.bind(console)
 
 /**
  * @param {character[][]} board

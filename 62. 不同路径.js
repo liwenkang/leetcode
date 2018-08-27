@@ -6,23 +6,25 @@ const log = console.log.bind(console)
  * @param {number} n
  * @return {number}
  */
+
+
 var uniquePaths = function (m, n) {
     var count = 0
-    var result = []
     var find = function (x, y, history) {
-        if (x === m && y === n) {
-            count++
-            return
-        }
         if (x > m || y > n) {
             return
         }
-        find(x + 1, y)
-        find(x, y + 1)
+        if (x === m && y === n) {
+            log(history)
+            count++
+            return
+        }
+        find(x + 1, y, history + "=>")
+        find(x, y + 1, history + "↓")
     }
     find(1, 1, "")
-    log("count", count)
+    log(count)
     return count
 }
 
-uniquePaths(23, 12)
+// uniquePaths(3, 3)

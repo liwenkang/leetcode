@@ -17,13 +17,8 @@ var pivotIndex = function (nums) {
         var arr1 = nums.slice(0, i)
         var arr2 = nums.slice(i + 1)
         if(sumArr(arr1) === sumArr(arr2)) {
-            log(i)
-            return
+            return i
         }
     }
-    log(-1)
     return -1
-}
-
-pivotIndex([1, 7, 3, 6, 5, 6])
-pivotIndex([1, 2, 3])
+};

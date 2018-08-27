@@ -20,8 +20,6 @@ var largeGroupPositions = function (S) {
             arr.push([result[i - 1][1], result[i][0]])
         }
     }
-
-    log(arr)
     return arr
 }
 
