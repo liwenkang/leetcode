@@ -1,6 +1,6 @@
 const log = console.log.bind(console)
 
-var levelOrder = function (root) {
+var zigzagLevelOrder = function (root) {
     if (root === null) {
         return []
     }
@@ -25,7 +25,9 @@ var levelOrder = function (root) {
         }
         result.push(current)
     }
-    log(result)
+    for (var i = 1; i < result.length; i += 2) {
+        result[i] = result[i].reverse()
+    }
     return result
 }
 
