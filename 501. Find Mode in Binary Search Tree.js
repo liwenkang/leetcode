@@ -1,44 +1,48 @@
-const log = console.log.bind(console)
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var findMode = function(root) {
+    var result = [];
+    var prev = null;
+    var count = 0;
+    var max = 0;
 
-var findMode = function (root) {
-    // 找出出现次数最多的元素
-    var result = []
-
-    function preOrder(root) {
+    function traverse(root) {
         if (root) {
-            result.push(root.val)
-            preOrder(root.left)
-            preOrder(root.right)
+            traverse(root.left);
+
+            if (prev && root.val === prev.val) {
+                count++;
+            } else {
+                count = 1;
+            }
+
+            if (count > max) {
+                result = [root.val];
+                max = count;
+            } else if (count === max) {
+                result.push(root.val);
+            }
+            prev = root;
+
+            traverse(root.right);
         }
     }
 
-    preOrder(root)
-    var dict = {}
-    for (var i = 0; i < result.length; i++) {
-        if (dict[result[i]] === undefined) {
-            dict[result[i]] = 1
-        } else {
-            dict[result[i]]++
-        }
-    }
-    var max = -Infinity
-
-    var out = []
-    for(var prop in dict) {
-        if(dict[prop] > max) {
-            max = dict[prop]
-        }
-    }
-    for(var prop in dict) {
-        if(dict[prop]  === max) {
-            out.push(parseInt(prop))
-        }
-    }
-    return out
-}
+    traverse(root);
+    return result
+};
 
 findMode({
-    val: 2147483647,
+    val: 1,
     left: null,
     right: null
 })

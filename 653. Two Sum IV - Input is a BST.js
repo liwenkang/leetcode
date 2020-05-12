@@ -1,29 +1,28 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var findTarget = function (root, k) {
-    var result = []
-    var getArr = function (root) {
+var findTarget = function(root, k) {
+    var array = [];
+
+    function traverse(root) {
         if (root) {
-            result.push(root.val)
-            getArr(root.left)
-            getArr(root.right)
+            array.push(root.val);
+            traverse(root.left);
+            traverse(root.right);
         }
     }
-    getArr(root)
-    // 在数组中查找两个和为 k 的值
-    result.sort(function (a, b) {
-        return a - b
-    })
 
-    for (var i = 0; i < result.length; i++) {
-        for (var j = i + 1; j < result.length; j++) {
-            if(result[i] + result[j] === k){
+    traverse(root);
+
+    for (var i = 0; i < array.length; i++) {
+        for (var j = i + 1; j < array.length; j++) {
+            if (array[i] + array[j] === k) {
                 return true
             }
         }
     }
+
     return false
-}
+};
 
 findTarget({
     val: 5,
@@ -49,4 +48,4 @@ findTarget({
             right: null
         }
     },
-})
+});

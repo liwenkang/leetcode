@@ -1,35 +1,25 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var isSameTree = function (p, q) {
-    var result1 = []
+var isSameTree = function(p, q) {
+    var flag = true;
 
-    function getArr1(p) {
-        if (p) {
-            result1.push(p.val)
-            getArr1(p.left)
-            getArr1(p.right)
-        }else {
-            result1.push(null)
+    function traverse(root1, root2) {
+        if (root1 && root2) {
+            if (root1.val !== root2.val) {
+                flag = false;
+            }
+            traverse(root1.left, root2.left);
+            traverse(root1.right, root2.right);
+        } else if (!root1 && !root2) {
+
+        } else {
+            flag = false;
         }
     }
 
-    getArr1(p)
+    traverse(p, q)
 
-    var result2 = []
-
-    function getArr2(q) {
-        if (q) {
-            result2.push(q.val)
-            getArr2(q.left)
-            getArr2(q.right)
-        }else {
-            result2.push(null)
-        }
-    }
-
-    getArr2(q)
-
-    return result1.toString() === result2.toString()
+    return flag
 };
 
 isSameTree({
@@ -57,4 +47,4 @@ isSameTree({
             left: null,
             right: null
         },
-    })
+    });

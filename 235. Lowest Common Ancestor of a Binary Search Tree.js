@@ -1,19 +1,17 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-// 判题有问题
-var lowestCommonAncestor = function (root, p, q) {
-    // 当 root.val 位于 p.val 和 q.val 之间的时候,说明 root 符合要求
-    while ((root.val - p.val) * (root.val - q.val) > 0) {
+// 神奇题目
+var lowestCommonAncestor = function(root, p, q) {
+    while ((root.val - p) * (root.val - q) > 0) {
+        // 说明不在范围内
         if (p.val < root.val) {
-            // 减少 root 的 的值
             root = root.left
         } else {
-            // 加大 root 的 的值
             root = root.right
         }
     }
     return root
-}
+};
 
 lowestCommonAncestor({
     val: 6,
@@ -51,4 +49,4 @@ lowestCommonAncestor({
             right: null
         },
     },
-}, 2, 4)
+}, 2, 8);

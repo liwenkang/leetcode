@@ -1,51 +1,52 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var getSum = function (root) {
-    // 返回该节点子树之和
-    var sum = 0
-    if (!root) {
-        return 0
-    }
+var getSum = function(root) {
+    // 返回节点的和
+    var result = 0;
 
-    function preOrder(root) {
+    function traverse(root) {
         if (root) {
-            sum += root.val
-            preOrder(root.left)
-            preOrder(root.right)
+            result += root.val;
+            traverse(root.left);
+            traverse(root.right);
         }
     }
 
-    preOrder(root)
-    return sum
-}
+    traverse(root);
+    return result;
+};
 
-var findTilt = function (root) {
-    var result = 0
+var findTilt = function(root) {
+    var result = 0;
 
-    function preOrder(root) {
+    function traverse(root) {
         if (root) {
-            if (root.left !== null && root.right !== null) {
-                result += Math.abs(getSum(root.left) - getSum(root.right))
-            } else if (root.left !== null && root.right === null) {
-                result += Math.abs(getSum(root.left))
-            } else if (root.left === null && root.right !== null) {
-                result += Math.abs(getSum(root.right))
+            if (root.left && root.right) {
+                result += Math.abs(getSum(root.left) - getSum(root.right));
+            } else if (root.left) {
+                result += Math.abs(getSum(root.left));
+            } else if (root.right) {
+                result += Math.abs(getSum(root.right));
             }
-            preOrder(root.left)
-            preOrder(root.right)
+            traverse(root.left);
+            traverse(root.right);
         }
     }
 
-    preOrder(root)
-    return result
-}
+    traverse(root);
+    return result;
+};
 
 findTilt({
     val: 1,
-    left: null,
-    right: {
+    left: {
         val: 2,
         left: null,
         right: null
+    },
+    right: {
+        val: 3,
+        left: null,
+        right: null
     }
-})
+});

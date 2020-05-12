@@ -1,45 +1,15 @@
-const log = console.log.bind(console)
-
 var searchBST = function (root, val) {
-    var result = []
-
-    function preOrder(root, val) {
+    // 找到哪个节点之后的
+    var result = null;
+    function traverse(root) {
         if (root) {
             if (root.val === val) {
-                result.push(root)
+                result = root;
             }
-            preOrder(root.left, val)
-            preOrder(root.right, val)
+            traverse(root.left);
+            traverse(root.right);
         }
     }
-
-    preOrder(root, val)
-
-    if (result.length > 0) {
-        return result[0]
-    } else {
-        return []
-    }
-}
-
-searchBST({
-    val: 4,
-    left: {
-        val: 2,
-        left: {
-            val: 1,
-            left: null,
-            right: null
-        },
-        right: {
-            val: 3,
-            left: null,
-            right: null
-        }
-    },
-    right: {
-        val: 7,
-        left: null,
-        right: null
-    }
-}, 2)
+    traverse(root)
+    return result
+};

@@ -1,48 +1,32 @@
-const log = console.log.bind(console)
+let hasPathSum = function(root, sum) {
+    var result = [];
 
-/*
-* Given the below binary tree and sum = 22,
-
-      5
-     / \
-    4   8
-   /   / \
-  11  13  4
- /  \      \
-7    2      1
-return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
-
- */
-var hasPathSum = function (root, sum) {
-    if (root) {
-        return f(root, sum) || false
-    } else {
-        return false
-    }
-
-    function f(root, sum) {
+    const dfs = function(root, test) {
         if (root) {
-            sum -= root.val
-            if (sum === 0 && root.left === null && root.right === null) {
-                return true
+            let temp = [...test, root.val];
+            if (!root.left && !root.right) {
+                result.push(temp);
             }
-            return f(root.left, sum) || f(root.right, sum)
+            dfs(root.left, temp);
+            dfs(root.right, temp);
+        }
+    };
+
+    dfs(root, []);
+
+    for (var i = 0; i < result.length; i++) {
+        var goal = sum;
+        for (var j = 0; j < result[i].length; j++) {
+            goal -= result[i][j];
+        }
+        if (goal === 0) {
+            return true;
         }
     }
+    return false;
 };
 
-log(hasPathSum({
-    val: 1,
-    right: {
-        val: 2,
-        left: null,
-        right: null
-    },
-    left: null
-}, 1))
-
-/*
-log(hasPathSum({
+hasPathSum({
     val: 5,
     left: {
         val: 4,
@@ -57,7 +41,7 @@ log(hasPathSum({
                 val: 2,
                 left: null,
                 right: null
-            },
+            }
         },
         right: null
     },
@@ -75,9 +59,7 @@ log(hasPathSum({
                 val: 1,
                 left: null,
                 right: null
-            },
-        },
+            }
+        }
     },
-}, 22))
-
-*/
+}, 22);

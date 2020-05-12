@@ -1,39 +1,49 @@
-const log = console.log.bind(console)
-
-
-var getPlusNum = function (value, array) {
-    var sum = 0
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+function getSum(array, val) {
+    var count = 0;
     for (var i = 0; i < array.length; i++) {
-        if (array[i] > value) {
-            sum += array[i]
+        if (array[i] > val) {
+            count += array[i];
         }
     }
-    return value + sum
+    return count;
 }
 
-var convertBST = function (root) {
-    var result = []
+var convertBST = function(root) {
+    // 判断自家的 val 和 左右的关系
+    var result = [];
 
-    function getArr(root) {
+    function traverse(root) {
         if (root) {
-            result.push(root.val)
-            getArr(root.left)
-            getArr(root.right)
+            result.push(root.val);
+            traverse(root.left);
+            traverse(root.right);
         }
     }
 
-    getArr(root)
+    traverse(root);
 
-    function plusNum(root) {
+    function addNumber(root) {
         if (root) {
-            root.val = getPlusNum(root.val, result)
-            plusNum(root.left)
-            plusNum(root.right)
+            root.val = root.val + getSum(result, root.val);
+            addNumber(root.left);
+            addNumber(root.right);
+            return root;
         }
     }
-    plusNum(root)
-    return root
-}
+
+    return addNumber(root);
+};
 
 convertBST({
     val: 5,
@@ -47,4 +57,4 @@ convertBST({
         left: null,
         right: null
     }
-})
+});

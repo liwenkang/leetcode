@@ -1,28 +1,24 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var sumOfLeftLeaves = function (root) {
-    var arr = []
+var sumOfLeftLeaves = function(root) {
+    var count = 0;
 
-    function getArr(root) {
+    function traverse(root) {
         if (root) {
-            if (root.left) {
+            if (root.left && root.left.val) {
                 if (root.left.left === null && root.left.right === null) {
-                    arr.push(root.left.val)
+                    count += root.left.val;
                 }
             }
-            getArr(root.left)
-            getArr(root.right)
+            traverse(root.left);
+            traverse(root.right);
         }
     }
 
-    getArr(root)
+    traverse(root);
+    return count
+};
 
-    var sum = 0
-    for (var i = 0; i < arr.length; i++) {
-        sum += arr[i]
-    }
-    return sum
-}
 
 sumOfLeftLeaves({
     val: 1,
@@ -33,15 +29,15 @@ sumOfLeftLeaves({
             left: null,
             right: null
         },
-        right: null
-    },
-    right: {
-        val: 3,
-        left: null,
         right: {
             val: 5,
             left: null,
             right: null
         },
+    },
+    right: {
+        val: 3,
+        left: null,
+        right: null
     }
-})
+});

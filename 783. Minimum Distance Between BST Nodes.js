@@ -1,23 +1,46 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var minDiffInBST = function (root) {
-    var result = []
-    var helper = function (root) {
-        if (root) {
-            result.push(root.val)
-            helper(root.left)
-            helper(root.right)
+var minDiffInBST = function(root) {
+    var min = Infinity;
+    var prev = Infinity;
+
+    function getMin(root) {
+        if (!root) {
+            return;
         }
-    }
-    helper(root)
-    // 找到 result 中最接近的两个数字
-    result.sort((a, b) => a - b)
-    var min = Infinity
-    for (var i = 1; i < result.length; i++) {
-        var diff = result[i] - result[i - 1]
-        if(diff < min) {
-            min = diff
+        getMin(root.left);
+        // 有点神奇
+        const diff = Math.abs(prev - root.val);
+        if (diff < min) {
+            min = diff;
         }
+        prev = root.val;
+        getMin(root.right);
     }
-    return min
-}
+
+    getMin(root);
+    console.log('min', min);
+    return min;
+};
+
+minDiffInBST({
+    val: 5,
+    left: {
+        val: 4,
+        left: {
+            val: 2,
+            left: null,
+            right: null
+        },
+        right: {
+            val: 3,
+            left: null,
+            right: null
+        }
+    },
+    right: {
+        val: 6,
+        left: null,
+        right: null
+    }
+});

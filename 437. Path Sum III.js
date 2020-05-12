@@ -1,18 +1,30 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var pathSumFrom = function (node, sum) {
-    if (node === null) return 0
-    return (node.val === sum ? 1 : 0)
-        + pathSumFrom(node.left, sum - node.val) + pathSumFrom(node.right, sum - node.val)
-}
+var pathSum = function(root, sum) {
+    // todo 这个有点迷
 
-var pathSum = function (root, sum) {
-    if (root === null) return 0
-    return pathSumFrom(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum)
-}
+    var result = 0;
 
+    function traverse(root, curr) {
+        // 从头往下搜索，看看能不能把 sum 变成 0
+        if (root) {
+            curr += root.val;
+            if (curr === sum) {
+                result++;
+            }
+            traverse(root.left, curr);
+            traverse(root.right, curr);
 
-log(pathSum({
+            traverse(root.left, sum);
+            traverse(root.right, sum);
+        }
+    }
+
+    traverse(root, 0);
+    console.log(result);
+};
+
+pathSum({
     val: 10,
     left: {
         val: 5,
@@ -48,4 +60,4 @@ log(pathSum({
             right: null
         }
     }
-}, 8))
+}, 8);

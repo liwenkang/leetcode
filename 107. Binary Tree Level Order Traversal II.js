@@ -1,20 +1,30 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var levelOrderBottom = function (root) {
-    var result = []
-    var dfs = function (node, depth = 0) {
-        if (node) {
-            if (result.length <= depth) {
-                result.push([])
-            }
-            result[depth].push(node.val)
-            dfs(node.left, depth + 1)
-            dfs(node.right, depth + 1)
-        }
+// 广度优先搜索
+var levelOrderBottom = function(root) {
+    if (!root) {
+        return []
     }
-    dfs(root)
+    var result = [];
+    var stack = [];
+    stack.push(root);
+    while (stack.length > 0) {
+        var temp = [];
+        var data = [];
+        for (var i = 0; i < stack.length; i++) {
+            temp.push(stack[i].val);
+            if (stack[i].left) {
+                data.push(stack[i].left);
+            }
+            if (stack[i].right) {
+                data.push(stack[i].right);
+            }
+        }
+        result.push(temp);
+        stack = data;
+    }
     return result.reverse()
-}
+};
 
 levelOrderBottom({
         val: 3,
@@ -37,4 +47,4 @@ levelOrderBottom({
             }
         }
     }
-)
+);

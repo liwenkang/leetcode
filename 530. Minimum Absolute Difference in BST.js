@@ -1,26 +1,28 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var getMinimumDifference = function (root) {
-    var arr = []
-    var helper = function (root) {
+var getMinimumDifference = function(root) {
+    var result = [];
+
+    function traverse(root) {
         if (root) {
-            arr.push(root.val)
-            helper(root.left)
-            helper(root.right)
+            result.push(root.val);
+            traverse(root.left);
+            traverse(root.right);
         }
     }
-    helper(root)
-    // 取得差值最小的
-    var min = Infinity
-    for (var i = 0; i < arr.length; i++) {
-        for (var j = i + 1; j < arr.length; j++) {
-            if (Math.abs(arr[i] - arr[j]) < min) {
-                min = Math.abs(arr[i] - arr[j])
+
+    traverse(root);
+    var min = Infinity;
+    for (var i = 0; i < result.length; i++) {
+        for (var j = i + 1; j < result.length; j++) {
+            var val = Math.abs(result[i] - result[j]);
+            if (val < min) {
+                min = val;
             }
         }
     }
-    return min
-}
+    return min;
+};
 
 getMinimumDifference({
     val: 1,
@@ -34,4 +36,4 @@ getMinimumDifference({
         },
         right: null
     }
-})
+});

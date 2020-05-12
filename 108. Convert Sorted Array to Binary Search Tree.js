@@ -1,22 +1,19 @@
-const log = console.log.bind(console)
-
-// In Order Traversal
 function TreeNode(val) {
-    this.val = val
-    this.left = this.right = null
+    this.val = val;
+    this.left = null;
+    this.right = null;
 }
 
-var sortedArrayToBST = function (nums) {
+var sortedArrayToBST = function(nums) {
+    var midIndex = Math.floor(nums.length / 2);
+    var mid = nums[midIndex];
     if (nums.length === 0) {
         return null
     }
-    var middle = Math.floor(nums.length / 2)
-    var leftArr = nums.slice(0, middle)
-    var rightArr = nums.slice(middle + 1)
-    var root = new TreeNode(nums[middle])
-    root.left = sortedArrayToBST(leftArr)
-    root.right = sortedArrayToBST(rightArr)
-    return root
-}
+    var node = new TreeNode(mid);
+    node.left = sortedArrayToBST(nums.slice(0, midIndex));
+    node.right = sortedArrayToBST(nums.slice(midIndex + 1));
+    return node;
+};
 
-sortedArrayToBST([-10, -3, 0, 5, 9])
+console.log(sortedArrayToBST([-10, -3, 0, 5, 9]));

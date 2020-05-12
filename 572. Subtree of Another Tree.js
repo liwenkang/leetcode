@@ -1,44 +1,51 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-function getArr(root) {
-    var arr = []
+var isSame = function(root1, root2) {
+    var flag = true;
 
-    function preOrder(root) {
-        if (root) {
-            arr.push(root.val)
-            preOrder(root.left)
-            preOrder(root.right)
-        } else {
-            arr.push(null)
-        }
-    }
-
-    preOrder(root)
-    return arr.toString()
-}
-
-var isSubtree = function (s, t) {
-    // 判断 t 是否是 s 的子树
-    var arr = []
-    var tArr = getArr(t)
-
-    function preOrder(root) {
-        if (root) {
-            if (getArr(root) === tArr) {
-                arr.push(true)
+    function traverse(root1, root2) {
+        if (root1 && root2) {
+            if (root1.val !== root2.val) {
+                flag = false;
+                return;
             }
-            preOrder(root.left)
-            preOrder(root.right)
+
+            traverse(root1.left, root2.left);
+            traverse(root1.right, root2.right);
+        } else if (!root1 && !root2) {
+        } else {
+            flag = false;
+            return;
         }
     }
 
-    preOrder(s)
-    if (arr.length > 0) {
-        return arr[0]
-    } else {
-        return false
+    traverse(root1, root2);
+    return flag;
+};
+
+var isSubtree = function(s, t) {
+    // 两个的 val 相同之后，继续往下判断
+    var maybeResult = [];
+
+    function traverse(root) {
+        if (root) {
+            if (root.val === t.val) {
+                maybeResult.push(root);
+            }
+            traverse(root.left);
+            traverse(root.right);
+        }
     }
-}
+
+    traverse(s);
+
+    for (var i = 0; i < maybeResult.length; i++) {
+        if (isSame(maybeResult[i], t)) {
+            return true;
+        }
+    }
+    return false;
+};
 //
 isSubtree({
         val: 3,
@@ -74,4 +81,4 @@ isSubtree({
             right: null
         },
     }
-)
+);

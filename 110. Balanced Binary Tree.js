@@ -1,18 +1,41 @@
-const log = console.log.bind(console)
+const log = console.log.bind(console);
 
-var getDepth = function (root) {
-    if (root === null) {
-        return 0
+var isBalanced = function(root) {
+    // todo 这个有点迷
+};
+
+
+isBalanced({
+    val: 3,
+    left: {
+        val: 9,
+        left: null,
+        right: null
+    },
+    right: {
+        val: 20,
+        left: null,
+        right: null
     }
-    return 1 + Math.max(getDepth(root.left), getDepth(root.right))
-}
-
-var isBalanced = function (root) {
-    if (root === null) {
-        return true
+})
+isBalanced({
+    val: 3,
+    left: {
+        val: 9,
+        left: null,
+        right: null
+    },
+    right: {
+        val: 20,
+        left: {
+            val: 15,
+            left: null,
+            right: null
+        },
+        right: {
+            val: 7,
+            left: null,
+            right: null
+        }
     }
-    var left = getDepth(root.left)
-    var right = getDepth(root.right)
-
-    return Math.abs(left - right) <= 1 && isBalanced(root.left) && isBalanced(root.right)
-}
+});
