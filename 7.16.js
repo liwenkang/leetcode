@@ -1,7 +1,5 @@
 const log = console.log.bind(console)
 
-//
-
 var eachArray = function (ary, action) {
     for (var i = 0; i < ary.length; i++) {
         action(ary[i])
